@@ -29,8 +29,8 @@ parte de esa restricción. El spec funcional completo vive en [`CLAUDE.md`](CLAU
 Requisitos: Node.js 20+ y un proyecto de [Supabase](https://supabase.com).
 
 ```bash
-git clone https://github.com/santinovargasdb/logiswift.git
-cd logiswift
+git clone https://github.com/santinovargasdb/LogiSwift.git
+cd LogiSwift
 npm install
 cp .env.example .env   # completar con las credenciales del proyecto
 npm run dev            # http://localhost:5173
