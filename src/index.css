@@ -1,4 +1,7 @@
-@import "@fontsource-variable/inter";
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
+@import "@fontsource/poppins/700.css";
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -17,19 +20,19 @@
   --secondary-foreground: #171717;
   --muted: #f5f5f5;
   --muted-foreground: #757575;
-  --accent: #ecfeff;
+  --accent: #e6f7fa;
   --accent-foreground: #0e7490;
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
-  --border: #e8e8e8;
+  --border: #e5e5e5;
   --input: #e0e0e0;
   --ring: #06b6d4;
-  --radius: 0.75rem;
+  --radius: 0rem;
 }
 
 @theme inline {
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", sans-serif;
+  --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -49,10 +52,11 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  /* Esquinas rectas en toda la UI */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
 }
 
 @layer base {
@@ -70,6 +74,32 @@
 @layer utilities {
   /* Label de KPI: mayúsculas, chico, letter-spacing amplio */
   .kpi-label {
-    @apply text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground;
+    @apply text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground;
+  }
+
+  /* Esquina doblada oscura (abajo a la derecha) para botones primarios */
+  .fold-br {
+    @apply relative;
+  }
+  .fold-br::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-left: 11px solid transparent;
+    border-bottom: 11px solid rgb(0 0 0 / 0.22);
+  }
+
+  /* Esquina doblada clara (arriba a la derecha) para tiles de ícono */
+  .fold-tr {
+    @apply relative;
+  }
+  .fold-tr::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top: 13px solid rgb(255 255 255 / 0.6);
+    border-left: 13px solid transparent;
   }
 }

@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom"
-import { LayoutDashboard, Route, Package, Users } from "lucide-react"
+import { LayoutGrid, MapPin, Package, Users } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const tabs = [
-  { to: "/", label: "Panel", icon: LayoutDashboard },
-  { to: "/ruta", label: "Ruta", icon: Route },
+  { to: "/", label: "Panel", icon: LayoutGrid },
+  { to: "/ruta", label: "Ruta", icon: MapPin },
   { to: "/stock", label: "Stock", icon: Package },
   { to: "/clientes", label: "Clientes", icon: Users },
 ]
@@ -20,15 +20,25 @@ export function BottomNav() {
             end={to === "/"}
             className={({ isActive }) =>
               cn(
-                "flex flex-col items-center gap-1 py-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] transition-colors",
+                "relative flex flex-col items-center gap-1.5 pb-4 pt-4 text-[11px] font-semibold uppercase tracking-[0.08em] transition-colors",
                 isActive
-                  ? "text-primary"
+                  ? "bg-accent text-primary"
                   : "text-muted-foreground hover:text-foreground"
               )
             }
           >
-            <Icon className="size-5" strokeWidth={2.25} />
-            {label}
+            {({ isActive }) => (
+              <>
+                {isActive && (
+                  <span
+                    aria-hidden
+                    className="absolute top-0 h-[3px] w-10 bg-primary"
+                  />
+                )}
+                <Icon className="size-6" strokeWidth={2} />
+                {label}
+              </>
+            )}
           </NavLink>
         ))}
       </div>

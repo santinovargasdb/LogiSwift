@@ -9,11 +9,11 @@ export default function Clientes() {
   const [busqueda, setBusqueda] = useState("")
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       <SectionTitle
         title="Clientes"
         action={
-          <Button size="sm" className="font-bold" disabled>
+          <Button className="fold-br px-5 font-semibold" disabled>
             <Plus />
             Nuevo
           </Button>
@@ -21,9 +21,9 @@ export default function Clientes() {
       />
 
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        <Search className="absolute left-3.5 top-1/2 size-4.5 -translate-y-1/2 text-muted-foreground" />
         <Input
-          className="bg-card pl-9"
+          className="h-12 bg-card pl-10 text-[15px]"
           placeholder="Buscar por nombre o dirección..."
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value)}

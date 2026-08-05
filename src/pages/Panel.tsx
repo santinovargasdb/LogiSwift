@@ -1,7 +1,7 @@
-import { Download, DollarSign, Package } from "lucide-react"
+import { CircleCheck, Download, Package, Receipt, TrendingUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { EmptyState } from "@/components/EmptyState"
-import { KpiCard } from "@/components/KpiCard"
+import { KpiTile } from "@/components/KpiCard"
 import { SectionTitle } from "@/components/SectionTitle"
 import { formatFechaLarga, formatMesAnio, formatMoney } from "@/lib/format"
 
@@ -14,21 +14,25 @@ export default function Panel() {
 
       <EmptyState>No hay hoja de ruta creada para hoy.</EmptyState>
 
-      <section className="space-y-3">
+      <section className="space-y-4">
         <SectionTitle
+          size="md"
+          icon={TrendingUp}
           title="Resumen Del Día"
           action={
-            <Button variant="outline" size="sm" disabled>
+            <Button variant="outline" disabled>
               <Download />
               Descargar
             </Button>
           }
         />
+        <p className="text-sm text-muted-foreground">{formatFechaLarga(hoy)}</p>
         <div className="grid grid-cols-2 gap-3">
-          <KpiCard label="Bultos" value={0} icon={Package} />
-          <KpiCard label="Facturado" value={formatMoney(0)} icon={DollarSign} />
+          <KpiTile label="Bultos" value={0} icon={Package} />
+          <KpiTile label="Facturado" value={formatMoney(0)} icon={Receipt} />
         </div>
-        <Button size="lg" className="w-full font-bold" disabled>
+        <Button size="lg" className="h-12 w-full text-[15px] font-bold" disabled>
+          <CircleCheck className="size-5" />
           Terminar el día
         </Button>
         <p className="text-center text-xs text-muted-foreground">
@@ -36,27 +40,29 @@ export default function Panel() {
         </p>
       </section>
 
-      <section className="space-y-3">
+      <section className="space-y-4">
         <SectionTitle
+          size="md"
+          icon={TrendingUp}
           title={`Resumen — ${formatMesAnio(hoy)}`}
           action={
-            <Button variant="outline" size="sm" disabled>
+            <Button variant="outline" disabled>
               <Download />
               Exportar
             </Button>
           }
         />
         <div className="grid grid-cols-2 gap-3">
-          <KpiCard
+          <KpiTile
             label="Bultos"
             value={0}
             icon={Package}
             hint="0 días con ventas"
           />
-          <KpiCard
+          <KpiTile
             label="Facturado"
             value={formatMoney(0)}
-            icon={DollarSign}
+            icon={Receipt}
             hint="Sin datos aún"
           />
         </div>

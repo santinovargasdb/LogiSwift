@@ -5,7 +5,8 @@ const moneyFmt = new Intl.NumberFormat("es-AR", {
 })
 
 export function formatMoney(value: number): string {
-  return moneyFmt.format(value)
+  // Sin espacio entre el signo y el número: "$1.250", no "$ 1.250"
+  return moneyFmt.format(value).replace(/\s/g, "")
 }
 
 /** "Miércoles 5 De Agosto" */

@@ -6,7 +6,7 @@ export function AppLayout() {
   return (
     <div className="min-h-dvh">
       <AppHeader />
-      <main className="mx-auto w-full max-w-[600px] px-4 pb-28 pt-20">
+      <main className="mx-auto w-full max-w-[600px] px-4 pb-32 pt-[104px]">
         <Outlet />
       </main>
       <BottomNav />

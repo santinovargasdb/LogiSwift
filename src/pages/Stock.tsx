@@ -1,18 +1,15 @@
 import { useState } from "react"
 import {
   Package,
-  PackageCheck,
-  PackageOpen,
-  PackagePlus,
-  Pencil,
+  Scale,
   Settings,
+  ShoppingCart,
+  SquarePen,
+  TrendingDown,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { EmptyState } from "@/components/EmptyState"
-import { KpiCard } from "@/components/KpiCard"
-import { SectionTitle, SubTitle } from "@/components/SectionTitle"
+import { KpiStat } from "@/components/KpiCard"
+import { SectionTitle } from "@/components/SectionTitle"
 
 export default function Stock() {
   const [gastosFijos, setGastosFijos] = useState("")
@@ -20,92 +17,98 @@ export default function Stock() {
 
   return (
     <div className="space-y-6">
-      <div className="space-y-3">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <SectionTitle title="Stock y Ventas" />
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm" className="flex-1" disabled>
-            <PackagePlus />
+        <div className="flex flex-wrap gap-2">
+          <Button className="fold-br font-semibold" disabled>
+            <ShoppingCart />
             Reponer
           </Button>
-          <Button variant="outline" size="sm" className="flex-1" disabled>
+          <Button variant="outline" disabled>
             <Settings />
             Config
           </Button>
-          <Button variant="outline" size="sm" className="flex-1" disabled>
-            <Pencil />
+          <Button variant="outline" disabled>
+            <SquarePen />
             Editar
           </Button>
         </div>
       </div>
 
       <div className="grid grid-cols-3 gap-3">
-        <KpiCard className="p-3" label="Inicial" value={0} icon={Package} />
-        <KpiCard
-          className="p-3"
-          label="Vendidos"
-          value={0}
-          icon={PackageCheck}
-        />
-        <KpiCard
-          className="p-3"
+        <KpiStat label="Inicial" value={0} icon={Package} />
+        <KpiStat label="Vendidos" value={0} icon={TrendingDown} accent />
+        <KpiStat
           label="Restante"
           value={0}
-          icon={PackageOpen}
+          icon={Package}
           iconClassName="text-amber-500"
         />
       </div>
 
-      <section className="space-y-3 rounded-xl border bg-card p-4">
-        <h3 className="text-sm font-bold text-foreground">
+      <section className="space-y-4 border border-l-2 border-l-primary bg-card p-5">
+        <h3 className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.06em] text-foreground">
+          <Scale className="size-4.5 shrink-0 text-primary" />
           ¿Cuánto necesito vender para llegar a la meta?
         </h3>
         <div className="grid grid-cols-2 gap-3">
-          <div className="space-y-1.5">
-            <Label htmlFor="gastos-fijos" className="kpi-label">
+          <div className="bg-secondary px-4 py-3">
+            <label htmlFor="gastos-fijos" className="kpi-label">
               Gastos Fijos
-            </Label>
-            <Input
-              id="gastos-fijos"
-              inputMode="decimal"
-              placeholder="$ 0"
-              value={gastosFijos}
-              onChange={(e) => setGastosFijos(e.target.value)}
-            />
+            </label>
+            <div className="flex items-baseline text-lg font-bold text-foreground">
+              $
+              <input
+                id="gastos-fijos"
+                inputMode="numeric"
+                placeholder="0"
+                className="w-full bg-transparent text-lg font-bold outline-none placeholder:text-foreground"
+                value={gastosFijos}
+                onChange={(e) => setGastosFijos(e.target.value)}
+              />
+            </div>
           </div>
-          <div className="space-y-1.5">
-            <Label htmlFor="ganancia-meta" className="kpi-label">
+          <div className="bg-secondary px-4 py-3">
+            <label htmlFor="ganancia-meta" className="kpi-label">
               Ganancia Meta
-            </Label>
-            <Input
-              id="ganancia-meta"
-              inputMode="decimal"
-              placeholder="$ 0"
-              value={gananciaMeta}
-              onChange={(e) => setGananciaMeta(e.target.value)}
-            />
+            </label>
+            <div className="flex items-baseline text-lg font-bold text-foreground">
+              $
+              <input
+                id="ganancia-meta"
+                inputMode="numeric"
+                placeholder="0"
+                className="w-full bg-transparent text-lg font-bold outline-none placeholder:text-foreground"
+                value={gananciaMeta}
+                onChange={(e) => setGananciaMeta(e.target.value)}
+              />
+            </div>
           </div>
         </div>
-        <div className="rounded-lg bg-primary/10 px-4 py-3 text-center">
-          <p className="kpi-label text-accent-foreground">
-            Unidades totales para alcanzar la meta
-          </p>
-          <p className="mt-1 text-2xl font-extrabold tabular-nums text-foreground">
-            —
-          </p>
-          <p className="mt-0.5 text-xs text-muted-foreground">
-            Se calcula con el precio de tus productos cargados.
+        <div className="border border-primary/40 border-l-2 border-l-primary bg-accent px-4 py-4 text-center">
+          <p className="kpi-label">Unidades totales para alcanzar la meta</p>
+          <p className="mt-1 text-[28px] font-bold leading-8 tabular-nums text-primary">
+            0
           </p>
         </div>
       </section>
 
-      <section className="space-y-3">
-        <SubTitle>Inventario del Vehículo</SubTitle>
-        <EmptyState>Todavía no cargaste stock para hoy.</EmptyState>
+      <section className="space-y-4 border bg-card p-5">
+        <h3 className="text-[13px] font-bold uppercase tracking-[0.06em] text-foreground">
+          Inventario del Vehículo
+        </h3>
+        <p className="border border-dotted border-[#cfcfcf] px-4 py-7 text-center text-sm text-muted-foreground">
+          Todavía no cargaste stock para hoy.
+        </p>
       </section>
 
-      <section className="space-y-3">
-        <SubTitle>Registro de Ventas</SubTitle>
-        <EmptyState>Aún no hay ventas registradas hoy.</EmptyState>
+      <section className="space-y-4 border bg-card p-5">
+        <h3 className="text-[13px] font-bold uppercase tracking-[0.06em] text-foreground">
+          Registro de Ventas
+        </h3>
+        <p className="border border-dotted border-[#cfcfcf] px-4 py-7 text-center text-sm text-muted-foreground">
+          Aún no hay ventas registradas hoy.
+        </p>
       </section>
     </div>
   )
