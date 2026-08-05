@@ -1,0 +1,62 @@
+# ---------- Dependencias ----------
+node_modules/
+
+# ---------- Builds ----------
+dist/
+dist-ssr/
+# service worker generado por vite-plugin-pwa en desarrollo
+dev-dist/
+*.tsbuildinfo
+
+# ---------- Variables de entorno y secretos ----------
+# Nunca commitear credenciales: solo .env.example como plantilla
+.env
+.env.*
+!.env.example
+*.local
+*.pem
+*.key
+
+# ---------- Logs ----------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ---------- Tests y cobertura ----------
+coverage/
+test-results/
+playwright-report/
+.playwright-mcp/
+
+# ---------- Supabase CLI (entorno local) ----------
+supabase/.temp/
+supabase/.branches/
+
+# ---------- Dumps y datos locales ----------
+# schema.sql y las migraciones SÍ se versionan; los dumps y bases locales no
+*.dump
+*.sql.gz
+*.sqlite
+*.sqlite3
+
+# ---------- Deploy ----------
+.vercel/
+
+# ---------- Herramientas / IDE ----------
+.claude/settings.local.json
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ---------- Sistema operativo ----------
+.DS_Store
+Thumbs.db
