@@ -113,3 +113,4 @@ sin que el anterior funcione end-to-end contra Supabase real:
 - Fechas y montos en formato `es-AR`, moneda en pesos argentinos.
 - Tablas y columnas en español, `snake_case`.
 - Un hook de datos por entidad que encapsula TanStack Query.
+ 
